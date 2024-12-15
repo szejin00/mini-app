@@ -1,9 +1,8 @@
 "use client";
 
-import { use, useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import Image from "next/image";
-import catLogo from "./image/cat.png";
 import { useRouter } from "next/navigation";
 import { useAuth } from "./authContext";
 
@@ -13,6 +12,16 @@ export default function LogIn() {
   const [errorMsg, setErrorMsg] = useState("");
   const { login } = useAuth();
   const router = useRouter();
+  const catLogo = "/image/cat.png";
+
+  useEffect(() => {
+    const setMode = localStorage.getItem("darkMode");
+    if (setMode === "true") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, []);
 
   /*const client = axios.create({
     baseURL: "https://jsonplaceholder.typicode.com/users",
@@ -45,7 +54,14 @@ export default function LogIn() {
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-        <Image alt="Cat Logo" src={catLogo} className="mx-auto h-32 w-auto" />
+        <Image
+          alt="Cat Logo"
+          src={catLogo}
+          className="mx-auto h-32 w-auto"
+          width={0}
+          height={0}
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        />
         <h2 className="mt-10 text-center text-2xl/9 font-semibold tracking-tight text-gray-700">
           Sign in
         </h2>

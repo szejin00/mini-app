@@ -2,13 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 :root {
-  --background: #f9f9f9;
-  --foreground: #000000;
+  --background: hsl(0, 0%, 98%);
+  --foreground: rgb(83, 89, 100);
+  --game-card-bg-light: #ffffff; /* Light mode card background */
+  --game-card-text-light: #2373a8; /* Light mode text color */
+  --game-card-border-light: #86cfec;
 }
 
 .dark {
   --background: #121212;
-  --foreground: #ffffff;
+  --foreground: rgb(207, 216, 236);
+  --game-card-bg-dark: #2d2d2d; /* Dark mode card background */
+  --game-card-text-dark: #abcfe7; /* Dark mode text color */
+  --game-card-border-dark: #444444;
 }
 
 body {
@@ -57,7 +63,58 @@ body {
 }
 
 .square.highlight {
-  background-color: rgb(114, 192, 211); /* Change the color to something noticeable */
+  background-color: rgb(114, 192, 211); 
   font-weight: bold;
   border: 2px solid rgb(0, 153, 255);
+}
+
+.game-card {
+  border: 1px solid var(--game-card-border-light);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s;
+  text-align: center;
+  background-color: var(--game-card-bg-light);
+  color: var(--game-card-text-light);
+  width: 250px; 
+  margin: 20px; 
+}
+
+.dark .game-card {
+  background-color: var(--game-card-bg-dark);
+  color: var(--game-card-text-dark);
+  border: 1px solid var(--game-card-border-dark);
+}
+
+.game-card:hover {
+  transform: scale(1.05);
+}
+
+.imagine-cont {
+  padding: 10px; 
+}
+
+.imagine-cont img {
+  width: 100%;
+  height: auto;
+  object-fit: cover; 
+}
+
+.game-title {
+  margin-top: 8px;
+  font-size: 1rem; 
+  font-weight: bold;
+}
+
+.game-desc {
+  font-size: 0.85rem; 
+  color: #aaa;
+  margin: 5px 0;
+}
+
+.game-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; 
+  justify-content: center; 
 }
